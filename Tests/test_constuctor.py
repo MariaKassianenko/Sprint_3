@@ -1,18 +1,29 @@
-import locators as l
-import pages as p
-import time
+from locators import *
+import data_for_sb_tests as data
+import urls
 
 
-def test_switch_ingredients_bread(user):
-    user.open_site(p.main_page)
-    assert 'current' in user.switch_ingredients('Булки')
+class TestConstuctor():
+    def test_switch_ingredients_bread(self, user):  # работают переходы к разделам - Булки
+        user.get(urls.main_page)
+        ingredient = data.ingredients.get('bread')
+        ingredient_locator = user.find_element(*ingredients_locator(ingredient))
+        user.execute_script("arguments[0].scrollIntoView();", ingredient_locator)
+        ingredient_locator.click()
+        assert 'current' in user.find_element(*current_ingredient_locator(ingredient)).get_attribute('class')
 
+    def test_switch_ingredients_sauses(self, user):  # работают переходы к разделам - Соусы
+        user.get(urls.main_page)
+        ingredient = data.ingredients.get('sauses')
+        ingredient_locator = user.find_element(*ingredients_locator(ingredient))
+        user.execute_script("arguments[0].scrollIntoView();", ingredient_locator)
+        ingredient_locator.click()
+        assert 'current' in user.find_element(*current_ingredient_locator(ingredient)).get_attribute('class')
 
-def test_switch_ingredients_sauses(user):
-    user.open_site(p.main_page)
-    assert 'current' in user.switch_ingredients('Соусы')
-
-
-def test_switch_ingredients_filling(user):
-    user.open_site(p.main_page)
-    assert 'current' in user.switch_ingredients('Начинки')
+    def test_switch_ingredients_filling(self, user):  # работают переходы к разделам - Начинки
+        user.get(urls.main_page)
+        ingredient = data.ingredients.get('filling')
+        ingredient_locator = user.find_element(*ingredients_locator(ingredient))
+        user.execute_script("arguments[0].scrollIntoView();", ingredient_locator)
+        ingredient_locator.click()
+        assert 'current' in user.find_element(*current_ingredient_locator(ingredient)).get_attribute('class')
