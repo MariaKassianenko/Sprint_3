@@ -1,6 +1,7 @@
 import pytest
 from selenium import webdriver
 
+
 @pytest.fixture()
 def user():
     options = webdriver.ChromeOptions()
@@ -8,4 +9,3 @@ def user():
     browser = webdriver.Chrome(options=options)
     yield browser
     browser.quit()
-    return user

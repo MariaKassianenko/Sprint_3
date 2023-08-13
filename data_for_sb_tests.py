@@ -4,6 +4,6 @@ valid_password = 'pwdPWD1'
 invalid_password = '12345'
 ingredients = {
     'bread': 'Булки',
-    'sauses': 'Соусы',
+    'sauces': 'Соусы',
     'filling': 'Начинки'
 }
